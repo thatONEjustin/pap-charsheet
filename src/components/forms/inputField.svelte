@@ -2,36 +2,47 @@
   // logic goes here
   export let editable = false;
 
-  export let value = $$restProps.value;
+  export let value = ($$restProps.value) ? $$restProps.value : '';
 
-  let fieldLabel = $$props.label;
+  const { name, type, id, label, containerClass } = $$restProps;
   
-  /** @param {MouseEvent} event */
   function handleClick(event: Event) {
     editable = ! editable;
   }
 </script>
 
-<div>
-  <label for={$$props.name}>{$$props.label}</label>
-  {#if !editable && value }
-  <a href=# on:click={handleClick}>{value}</a>
+<div class={containerClass}>
+  <label for={name}>{label}</label>
+
+  {#if !editable && value}
+    <a href=# on:click={handleClick}>{value}</a>
   {/if}
-  {#if editable || value == undefined }
-  <input {...$$restProps} />
+
+  {#if editable || value == ''}
+    <input {name} {type} {id} {value}/>
   {/if}
 </div>
 
 <style>
   /* styles go here */
   div {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    width: auto;
+    @apply
+      flex
+      flex-col
+      mb-3;
+  }
+
+  div > a {
+    @apply
+      p-3;
   }
 
   div input {
-    width: initial;
+    @apply 
+      w-full
+      border
+      border-black
+      rounded-md
+      p-3;
   }
 </style>
