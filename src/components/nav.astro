@@ -1,0 +1,20 @@
+---
+const nav = [
+  { url: '/', label: 'Home'},
+  { url: '/character-sheet', label: 'Character Sheet'},
+];
+---
+
+<ul>
+  {nav.map(item => <li><a href={item.url}>{item.label}</a></li>)}
+</ul>
+
+<!-- ---
+const nav = [
+  { url: '/', label: 'Home'},
+  { url: '/sheet', label: 'Character Sheet'},
+];
+---
+<ul>
+  {nav.map((data) => <li><a href={data.url}>{data.label}</li>)}
+</ul> -->
