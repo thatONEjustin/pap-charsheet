@@ -15,7 +15,7 @@
   <label for={name}>{label}</label>
 
   {#if !editable && value}
-    <a href=# on:click={handleClick}>{value}</a>
+    <a href="#" on:click={handleClick}>{value}</a>
   {/if}
 
   {#if editable || value == ''}
