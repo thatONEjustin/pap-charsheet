@@ -3,7 +3,7 @@
 
   export let value = ($$restProps.value) ? $$restProps.value : '';
 
-  const { name, type, id, label, required, containerClass } = $$restProps;
+  const { name, type, id, label, required, containerClass, rows, placeholder } = $$restProps;
   
   function handleClick(event: Event) {
     editing = ! editing
@@ -15,15 +15,15 @@
 
   {#if !editing && value}
     <!-- svelte-ignore a11y-invalid-attribute -->
-    <a href="#" on:click={handleClick}>{value}</a>
+    <a href=# on:click|preventDefault={handleClick}>{value}</a>
   {/if}
 
   {#if type != 'textarea'}
-  <input {name} {type} {id} {value} {required} class={(editing || value == '') ? '' : 'hidden'}/>
+  <input {name} {type} {id} {value} {placeholder} {required} class={(editing || value == '') ? '' : 'hidden'}/>
   {/if}
 
   {#if type == 'textarea'}
-  <textarea {name} {id} {required} class={(editing || value == '') ? '' : 'hidden'}>{value}</textarea>
+  <textarea {name} {id} {rows} {placeholder} {required} class={(editing || value == '') ? '' : 'hidden'}>{value}</textarea>
   {/if}
 </div>
 
@@ -37,7 +37,7 @@
 
   div > a {
     @apply
-      p-3
+      py-3
       cursor-pointer;
   }
 

@@ -7,6 +7,7 @@
   const form = document.querySelector('form')
 
   function validate(event) {
+    console.log('validate', form)
     if(event == null || event.currentTarget == null) return
 
     let data = new FormData(event.currentTarget)
@@ -17,11 +18,15 @@
       console.log(value)
     }
   }
+
+  function test(event) {
+    console.log(event)
+  }
 </script>
 
-<form on:submit|preventDefault={validate}>
+<form on:submit|preventDefault={validate} on:saveform={test}>
   <fieldset>
-    
+
     <PlayerInfo />
 
     <Powers />

@@ -1,20 +1,21 @@
-<script lang="ts">
+<script>
 
-  export let options: Array = ['Test', 'Default']
-  export let value = ($$restProps.value) ? options.find((item: String) => item == $$restProps.value) : options[0]
+  export let options = ['Test', 'Default']
+  export let value = ($$restProps.value) ? options.find((item) => item == $$restProps.value) : options[0]
 
   const { name, type, id, label, required, containerClass } = $$restProps
   
 
   let active = false
 
-  function showList(event: Event) {
+  function showList(event) {
     active = ! active
   }
 
-  function select(option: String) {
+  function select(option) {
     value = option
     active = false
+    return
   }
 </script>
 
@@ -22,11 +23,13 @@
   <label for={name}>{label}</label>
 
   <div class="DropdownContainer">
-    <div class="cursor-pointer" on:click={showList}>{(value == '') ? 'Default' : value}</div>
+    <!-- svelte-ignore a11y-invalid-attribute -->
+    <a href=# class="cursor-pointer" on:click|preventDefault={showList}>{(value == '') ? 'Default' : value}</a>
 
     <div class:hidden={!active} class="Dropdown">
       {#each options as option}
-      <div class="Dropdown-option" on:click={select(option)}>{option}</div>
+      <!-- svelte-ignore a11y-invalid-attribute -->
+      <a href=# class="Dropdown-option" on:click|preventDefault={select(option)}>{option}</a>
       {/each}
     </div>
   </div>

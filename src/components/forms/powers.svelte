@@ -1,4 +1,8 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+  
+  const dispatch = createEventDispatcher();
+
   import InputField from "./inputField.svelte";
   import DropdownField from "./dropdownField.svelte";
 
@@ -8,13 +12,8 @@
   let powers = [index]
 
   function addNew(event) {
-    console.log('add row')
     index++
-    powers[index] = index;
-  }
-
-  function test(event) {
-    console.log(powers)
+    powers[index] = index
   }
 
   let collapse = false
@@ -40,40 +39,51 @@
   <div class="accordion {accordion}">
     {#each powers as index}
     <div class="border-b border-b-slate-500 pb-2 mb-4">
-      <div class="flex flex-row">
+      <div class="grid grid-cols-12 gap-x-4">
         <InputField 
           {required} 
           type="text" 
           label="Power Name" 
           name="power_{index}_name" 
           id="power_{index}_name"
-          containerClass="w-full mr-auto" />
+          containerClass="col-span-7" />
 
-        <div class="grid grid-cols-2">
-          <DropdownField
-            {required} 
-            type="text" 
-            label="Source" 
-            name="power_{index}_source" 
-            id="power_{index}_source"
-            options={powerSources}
-            />
-            
-          <InputField 
-            {required} 
-            type="text" 
-            label="Rank" 
-            name="power_{index}_rank" 
-            id="power_{index}_rank"
-            />
-        </div>
+        <DropdownField
+          {required} 
+          type="text" 
+          label="Source" 
+          name="power_{index}_source" 
+          id="power_{index}_source"
+          options={powerSources}
+          containerClass="col-span-3"
+          />
+          
+        <InputField 
+          {required} 
+          type="number" 
+          label="Rank" 
+          name="power_{index}_rank" 
+          id="power_{index}_rank"
+          containerClass="col-span-2"
+          />
       </div>
       <InputField 
         {required} 
         type="textarea" 
-        label="Power Description" 
+        label="Power Description"
+        placeholder="What your power looks like in game" 
+        value="This is a test of the value of a textarea field."
         name="power_{index}_desc" 
         id="power_{index}_desc" />
+
+      <InputField 
+        {required} 
+        type="textarea" 
+        label="Rules" 
+        name="power_{index}_rules" 
+        placeholder="short summary of the base rules for your power" 
+        rows="6"
+        id="power_{index}_rules" />
 
       <InputField 
         {required} 
@@ -86,7 +96,8 @@
     {/each}
 
     <button 
-      on:click|preventDefault={addNew} 
+      on:click|preventDefault={addNew}
+      on:click={() => dispatch('saveform')}
       class="px-3 py-2 bg-blue-600 text-white rounded-md ml-auto">
       Add New
     </button>
