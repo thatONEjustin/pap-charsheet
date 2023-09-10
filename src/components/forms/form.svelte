@@ -1,32 +1,40 @@
-<script lang="ts">
-  import InputField from './inputField.svelte';
+<script>
+  import SubmitButton from './submitButton.svelte'
 
-  const form = document.querySelector('form');
+  import PlayerInfo from './playerInfo.svelte'
+  import Powers from './powers.svelte'
 
-  function validate(event: Event) {
-    console.log(FormData(form))
+  const form = document.querySelector('form')
+
+  function validate(event) {
+    if(event == null || event.currentTarget == null) return
+
+    let data = new FormData(event.currentTarget)
+    console.log(data)
+
+    for(var value of data) {
+      console.log('value')
+      console.log(value)
+    }
   }
 </script>
 
 <form on:submit|preventDefault={validate}>
   <fieldset>
-        
-      <InputField type="text" label="Player Name" name="player_name" id="player_name" />
+    
+    <PlayerInfo />
 
-      <InputField type="text" label="Character Name" name="character_name" id="character_name" />
+    <Powers />
 
-      <div class="grid grid-cols-2 gap-x-2">
-        <InputField type="text" label="Grouped Field" name="gf_1" id="gf_1" />
-        <InputField type="text" label="Grouped Field 2" name="gf_2" id="gf_2" />
-      </div>
   </fieldset>
+
+  <SubmitButton>
+    Next
+  </SubmitButton>
 </form>
 
-<style>
+<style lang="postcss">
   form {
-    /* width: auto;
-    max-width: 680px;
-    margin: 0 auto; */
     @apply
       w-auto
       max-w-xl
@@ -36,6 +44,31 @@
   fieldset {
     @apply
       flex
-      flex-col;
+      flex-col
+      my-6;
+
+    > *:last-child {
+      @apply mb-0;
+    }
+  }
+
+  :global(h1) {
+    @apply text-4xl;
+  }
+
+  :global(h2) {
+    @apply text-3xl;
+  }
+
+  :global(h3) {
+    @apply text-2xl;
+  }
+
+  :global(h4) {
+    @apply text-xl;
+  }
+
+  :global(h5) {
+    @apply text-lg;
   }
 </style>

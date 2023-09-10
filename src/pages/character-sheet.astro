@@ -2,9 +2,9 @@
 export const prerender = false;
 
 import BaseContent from '../components/baseLayout.astro';
-import CharacterSheet from '../components/forms/form.svelte';
+import Sheet from '../components/forms/form.svelte';
 ---
 
 <BaseContent>
-  <CharacterSheet client:only="svelte" />
+  <Sheet client:only="svelte" />
 </BaseContent>

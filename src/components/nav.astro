@@ -3,18 +3,36 @@ const nav = [
   { url: '/', label: 'Home'},
   { url: '/character-sheet', label: 'Character Sheet'},
 ];
+
+function isActive(url: String) {
+  return url == Astro.url.pathname ? 'active' : '';
+}
 ---
 
 <ul>
-  {nav.map(item => <li><a href={item.url}>{item.label}</a></li>)}
+  {nav.map(item => <li><a href={item.url} class={isActive(item.url)}>{item.label}</a></li>)}
 </ul>
 
-<!-- ---
-const nav = [
-  { url: '/', label: 'Home'},
-  { url: '/sheet', label: 'Character Sheet'},
-];
----
-<ul>
-  {nav.map((data) => <li><a href={data.url}>{data.label}</li>)}
-</ul> -->
+<style>
+  ul {
+    @apply
+      max-w-xl
+      mx-auto
+      flex
+      flex-row
+      py-4;
+
+    li {
+      @apply
+        mr-2
+        last:mr-0;
+      
+      a {
+        &.active {
+          @apply
+            font-bold;
+        }
+      }
+    }
+  }
+</style>
