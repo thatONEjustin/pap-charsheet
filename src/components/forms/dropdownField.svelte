@@ -1,25 +1,23 @@
 <script>
+export let options = ['Test', 'Default']
+export let value = ($$restProps.value) ? options.find((item) => item == $$restProps.value) : options[0]
 
-  export let options = ['Test', 'Default']
-  export let value = ($$restProps.value) ? options.find((item) => item == $$restProps.value) : options[0]
+const { name, type, id, label, required, containerClass } = $$restProps
 
-  const { name, type, id, label, required, containerClass } = $$restProps
-  
 
-  let active = false
+let active = false
 
-  function showList(event) {
-    active = ! active
-  }
+function showList(event) {
+  active = ! active
+}
 
-  function select(option) {
-    value = option
-    active = false
-    return
-  }
+function select(option) {
+  value = option
+  active = false
+}
 </script>
 
-<div class={containerClass}>
+<div class="FieldContainer {containerClass}">
   <label for={name}>{label}</label>
 
   <div class="DropdownContainer">
@@ -34,10 +32,25 @@
     </div>
   </div>
 
-  <input {name} type="hidden" {value} class="hidden" />
+  <input {name} type="hidden" {value} {required} class="hidden" />
 </div>
 
 <style lang="postcss">
+  .FieldContainer {
+    @apply
+      flex
+      flex-col
+      my-3;
+
+    > label {
+      @apply 
+        pb-1
+        mb-3
+        border-b
+        border-slate-400;
+    }
+  }
+
   .DropdownContainer {
     @apply 
       border 
@@ -49,6 +62,8 @@
   .Dropdown {
     @apply 
       absolute 
+      flex
+      flex-col
       bg-white 
       rounded-md 
       border 
@@ -61,6 +76,10 @@
         py-2 
         cursor-pointer
         ;
+    }
+
+    &.hidden {
+      @apply !hidden;
     }
   }
 </style>

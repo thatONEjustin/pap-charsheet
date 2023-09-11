@@ -1,37 +1,46 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
-  
-  const dispatch = createEventDispatcher();
+import { createEventDispatcher } from 'svelte';
 
-  import InputField from "./inputField.svelte";
-  import DropdownField from "./dropdownField.svelte";
+const dispatch = createEventDispatcher();
 
-  const required = false; 
+import InputField from "./inputField.svelte";
+import DropdownField from "./dropdownField.svelte";
 
-  let index  = 0
-  let powers = [index]
+const required = false; 
 
-  function addNew(event) {
-    index++
-    powers[index] = index
+let index  = 0
+let powers = [index]
+
+function addNew(event) {
+  index++
+  powers[index] = index
+}
+
+let collapse = false
+let accordion = ''
+
+function showHide(event) {
+  collapse = ! collapse
+
+  if(collapse) {
+    accordion = 'hide'
+    return;
   }
 
-  let collapse = false
-  let accordion = ''
+  accordion = ''
+}
 
-  function showHide(event) {
-    collapse = ! collapse
+const powerSources = ['Innate', 'Magic', 'Psychic', 'Super', 'Tech', 'Trained']
 
-    if(collapse) {
-      accordion = 'hide'
-      return;
-    }
+function test() {
+  console.log('test')
 
-    accordion = ''
+  try {
+    dispatch('saveCharSheet')
+  } catch (error) {
+    console.log(error)
   }
-
-  const powerSources = ['Innate', 'Magic', 'Psychic', 'Super', 'Tech', 'Trained']
-
+}
 </script>
 
 <div class="PowersContainer">
@@ -97,7 +106,7 @@
 
     <button 
       on:click|preventDefault={addNew}
-      on:click={() => dispatch('saveform')}
+      on:click={test}
       class="px-3 py-2 bg-blue-600 text-white rounded-md ml-auto">
       Add New
     </button>

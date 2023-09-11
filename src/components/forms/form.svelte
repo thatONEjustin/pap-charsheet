@@ -1,30 +1,30 @@
 <script>
-  import SubmitButton from './submitButton.svelte'
+import SubmitButton from './submitButton.svelte'
 
-  import PlayerInfo from './playerInfo.svelte'
-  import Powers from './powers.svelte'
+import PlayerInfo from './playerInfo.svelte'
+import Powers from './powers.svelte'
 
-  const form = document.querySelector('form')
+const form = document.querySelector('form')
 
-  function validate(event) {
-    console.log('validate', form)
-    if(event == null || event.currentTarget == null) return
+function validate(event) {
+  console.log('validate', form)
+  if(event == null || event.currentTarget == null) return
 
-    let data = new FormData(event.currentTarget)
-    console.log(data)
+  let data = new FormData(event.currentTarget)
+  console.log(data)
 
-    for(var value of data) {
-      console.log('value')
-      console.log(value)
-    }
+  for(var value of data) {
+    console.log('value')
+    console.log(value)
   }
+}
 
-  function test(event) {
-    console.log(event)
-  }
+function test(event) {
+  console.log(event)
+}
 </script>
 
-<form on:submit|preventDefault={validate} on:saveform={test}>
+<form on:submit|preventDefault={validate} on:saveCharSheet={test}>
   <fieldset>
 
     <PlayerInfo />

@@ -1,13 +1,13 @@
 <script lang="ts">
-  export let editing = false;
+export let editing = false;
 
-  export let value = ($$restProps.value) ? $$restProps.value : '';
+export let value = ($$restProps.value) ? $$restProps.value : '';
 
-  const { name, type, id, label, required, containerClass, rows, placeholder } = $$restProps;
-  
-  function handleClick(event: Event) {
-    editing = ! editing
-  }
+const { name, type, id, label, required, containerClass, rows, placeholder } = $$restProps;
+
+function handleClick(event: Event) {
+  editing = ! editing
+}
 </script>
 
 <div class={containerClass}>
@@ -32,7 +32,15 @@
     @apply
       flex
       flex-col
-      mb-3;
+      my-3;
+  }
+
+  div > label {
+    @apply 
+      pb-1
+      mb-3
+      border-b
+      border-slate-400;
   }
 
   div > a {
