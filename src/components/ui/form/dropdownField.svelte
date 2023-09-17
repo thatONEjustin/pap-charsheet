@@ -2,7 +2,7 @@
 export let options = ['Test', 'Default']
 export let value = ($$restProps.value) ? options.find((item) => item == $$restProps.value) : options[0]
 
-const { name, type, id, label, required, containerClass } = $$restProps
+const { name, id, label, required, containerClass } = $$restProps
 
 
 let active = false
@@ -32,7 +32,7 @@ function select(option) {
     </div>
   </div>
 
-  <input {name} type="hidden" {value} {required} class="hidden" />
+  <input {name} {id} type="hidden" {value} {required} />
 </div>
 
 <style lang="postcss">
@@ -45,9 +45,7 @@ function select(option) {
     > label {
       @apply 
         pb-1
-        mb-3
-        border-b
-        border-slate-400;
+        mb-3;
     }
   }
 

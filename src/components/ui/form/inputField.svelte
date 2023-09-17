@@ -38,9 +38,10 @@ function handleClick(event: Event) {
   div > label {
     @apply 
       pb-1
-      mb-3
+      mb-3;
+      /* 
       border-b
-      border-slate-400;
+      border-slate-400 */
   }
 
   div > a {
