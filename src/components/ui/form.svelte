@@ -32,9 +32,8 @@ function validate(event) {
     console.log(value)
   } */
   console.log('validate')
-  console.log(event.detail.data)
-  
-  for(var value of event.detail.data) {
+  let form = new FormData(document.querySelector('form'));
+  for(var value of form) {
     console.log(value)
   } 
 }

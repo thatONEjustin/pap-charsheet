@@ -1,5 +1,5 @@
 <script>
-export let options = ['Test', 'Default']
+export let options = ['']
 export let value = ($$restProps.value) ? options.find((item) => item == $$restProps.value) : options[0]
 
 const { name, id, label, required, containerClass } = $$restProps
