@@ -44,17 +44,12 @@ function submitForm() {
   })
 }
 
-
 </script>
 
 <form on:submit|preventDefault>
   <fieldset>
     <TabContent {tabs} on:savesheet={validate} />
   </fieldset>
-
-  <!-- <SubmitButton>
-    Next
-  </SubmitButton> -->
 </form>
 
 <style lang="postcss">

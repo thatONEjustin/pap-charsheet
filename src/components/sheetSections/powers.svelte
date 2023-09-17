@@ -36,8 +36,7 @@ function addNew() {
   const form = document.querySelector('form')!
   const data = new FormData(form)
 
-  let tmp:Superpower = {}
-
+  
   for(var input_field of data) {
     let [field_id, field_value] = input_field
     const field_type = (document.getElementById(field_id) as HTMLInputElement).type
@@ -56,7 +55,7 @@ function addNew() {
     (tmp[field_id.replace(`power_`, ``)] as any) = clean_value
     
   }
-  console.log(`before: ${iterator}`)
+  
   $userData.powers[iterator] = tmp
   iterator++
 
