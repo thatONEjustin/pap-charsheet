@@ -5,8 +5,14 @@ export let value = ($$restProps.value) ? $$restProps.value : '';
 
 const { name, type, id, label, required, containerClass, rows, placeholder } = $$restProps;
 
-function handleClick(event: Event) {
+let input:any;  
+
+function handleClick(_event: Event) {
   editing = ! editing
+
+  if(!editing) {
+    value = input.value
+  }
 }
 </script>
 
@@ -19,11 +25,15 @@ function handleClick(event: Event) {
   {/if}
 
   {#if type != 'textarea'}
-  <input {name} {type} {id} {value} {placeholder} {required} class={(editing || value == '') ? '' : 'hidden'}/>
+  <input {name} {type} {id} {value} {placeholder} {required} class={(editing || value == '') ? '' : 'hidden'} bind:this={input} />
   {/if}
 
   {#if type == 'textarea'}
-  <textarea {name} {id} {rows} {placeholder} {required} class={(editing || value == '') ? '' : 'hidden'}>{value}</textarea>
+  <textarea {name} {id} {rows} {placeholder} {required} class={(editing || value == '') ? '' : 'hidden'} bind:this={input} >{value}</textarea>
+  {/if}
+
+  {#if editing}
+    <a href=# on:click|preventDefault={handleClick}>Save</a>
   {/if}
 </div>
 

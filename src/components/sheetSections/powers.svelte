@@ -36,6 +36,7 @@ function addNew() {
   const form = document.querySelector('form')!
   const data = new FormData(form)
 
+  let tmp:Superpower = {}
   
   for(var input_field of data) {
     let [field_id, field_value] = input_field

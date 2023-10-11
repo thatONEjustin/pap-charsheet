@@ -51,11 +51,10 @@ const show = tab_index => () => (active = tab_index);
 
 <style lang="postcss">
   .active {
-    @apply
-    pb-[1px]
-    border
-    border-gray-200 
-    border-b-white
-    bg-white;
+    @apply pb-[1px]
+      border
+      border-gray-200 
+      border-b-white
+      bg-white;
   }
 </style>
